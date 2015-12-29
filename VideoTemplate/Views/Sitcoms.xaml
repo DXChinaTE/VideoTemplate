@@ -1,0 +1,554 @@
+﻿<Page
+    x:Class="VideoTemplate.Views.Sitcoms"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VideoTemplate.Views"
+    xmlns:controls="using:VideoTemplate.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:VideoTemplate.Common.Data"
+    xmlns:filterData ="using:VideoTemplate.Common"
+    mc:Ignorable="d" SizeChanged="Page_SizeChanged">
+
+    <!--<Page.Resources>
+        <CollectionViewSource x:Name="SitcomsCVS"  IsSourceGrouped="False" />
+        <DataTemplate x:Name="SitcomsGridViewTemplate" x:DataType="data:SitcomsList">
+            <StackPanel Orientation="Vertical">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Border Width="40" Height="40"></Border>
+                    <TextBlock TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{x:Bind id}" Foreground="White"></TextBlock>
+                </Grid>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>-->
+    <Page.Resources>
+        <DataTemplate x:Key="PivotHeader">
+            <ContentPresenter>
+                <TextBlock Text="{Binding}" FontSize="16"/>
+            </ContentPresenter>
+        </DataTemplate>
+    </Page.Resources>
+
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="detailGrid.Width" Value="0"></Setter>
+                        <Setter Target="sitcomPivot.Width" Value="270"></Setter>
+                        <Setter Target="detailGrid1.Visibility" Value="Visible"></Setter>
+                        <Setter Target="detaiHidingPanel.Visibility" Value="Visible"></Setter>
+                        <Setter Target="sitcomsInfoGrid.Visibility" Value="Collapsed"></Setter>
+                        <Setter Target="introducePanel.Visibility" Value="Collapsed"></Setter>
+                        <Setter Target="detailCloseBtnPanel.Visibility" Value="Visible"></Setter>
+                        <Setter Target="stars.Visibility" Value="Collapsed"></Setter>
+                        <Setter Target="introducePanel2.(RelativePanel.AlignLeftWithPanel)" Value="True"></Setter>
+                        <Setter Target="introducePanel2.(RelativePanel.Below)" Value="introducePanel1"></Setter>
+                        <Setter Target="introducePanel2.Margin" Value="0,0,0,0"></Setter>
+                        <Setter Target="players.Width" Value="200"></Setter>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="700"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="detailGrid.Width" Value="270"></Setter>
+                        <Setter Target="sitcomPivot.Width" Value="270"></Setter>
+                        <Setter Target="detailGrid1.Visibility" Value="Collapsed"></Setter>
+                        <Setter Target="detaiHidingPanel.Visibility" Value="Collapsed"></Setter>
+                        <Setter Target="sitcomsInfoGrid.Visibility" Value="Visible"></Setter>
+                        <Setter Target="introducePanel.Visibility" Value="Visible"></Setter>
+                        <Setter Target="detailCloseBtnPanel.Visibility" Value="Collapsed"></Setter>
+                        <Setter Target="stars.Visibility" Value="Collapsed"></Setter>
+                        <Setter Target="introducePanel2.(RelativePanel.AlignLeftWithPanel)" Value="True"></Setter>
+                        <Setter Target="introducePanel2.(RelativePanel.Below)" Value="introducePanel1"></Setter>
+                        <Setter Target="introducePanel2.Margin" Value="0,0,0,0"></Setter>
+                        <Setter Target="players.Width" Value="200"></Setter>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="900"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="detailGrid.Width" Value="270"></Setter>
+                        <Setter Target="detailGrid1.Visibility" Value="Collapsed"></Setter>
+                        <Setter Target="detaiHidingPanel.Visibility" Value="Collapsed"></Setter>
+                        <Setter Target="sitcomsInfoGrid.Visibility" Value="Visible"></Setter>
+                        <Setter Target="introducePanel.Visibility" Value="Visible"></Setter>
+                        <Setter Target="detailCloseBtnPanel.Visibility" Value="Collapsed"></Setter>
+                        <Setter Target="stars.Visibility" Value="Visible"></Setter>
+                        <Setter Target="introducePanel2.(RelativePanel.AlignLeftWithPanel)" Value="True"></Setter>
+                        <Setter Target="introducePanel2.(RelativePanel.Below)" Value="introducePanel1"></Setter>
+                        <Setter Target="introducePanel2.Margin" Value="0,0,0,0"></Setter>
+                        <Setter Target="players.Width" Value="Auto"></Setter>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1200"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="detailGrid.Width" Value="270"></Setter>
+                        <Setter Target="detailGrid1.Visibility" Value="Collapsed"></Setter>
+                        <Setter Target="detaiHidingPanel.Visibility" Value="Collapsed"></Setter>
+                        <Setter Target="sitcomsInfoGrid.Visibility" Value="Visible"></Setter>
+                        <Setter Target="introducePanel.Visibility" Value="Visible"></Setter>
+                        <Setter Target="detailCloseBtnPanel.Visibility" Value="Collapsed"></Setter>
+                        <Setter Target="stars.Visibility" Value="Visible"></Setter>
+                        <Setter Target="introducePanel2.(RelativePanel.AlignRightWithPanel)" Value="True"></Setter>
+                        <Setter Target="introducePanel2.(RelativePanel.Below)" Value="sitComsName"></Setter>
+                        <Setter Target="introducePanel2.Margin" Value="0,10,0,0"></Setter>
+                        <Setter Target="players.Width" Value="Auto"></Setter>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid Name="filterPage" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Background="#1F2024">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Width="Auto" Height="Auto" Grid.Row="0" Grid.Column="0" Foreground="#878787" Text="排序" FontSize="16" Margin="15,10,0,0"></TextBlock>
+                <TextBlock Width="Auto" Height="Auto" Grid.Row="1" Grid.Column="0" Foreground="#878787" Text="地区" FontSize="16" Margin="15,10,0,0"></TextBlock>
+                <TextBlock Width="Auto" Height="Auto" Grid.Row="2" Grid.Column="0" Foreground="#878787" Text="类型" FontSize="16" Margin="15,10,0,0"></TextBlock>
+                <TextBlock Width="Auto" Height="Auto" Grid.Row="3" Grid.Column="0" Foreground="#878787" Text="时间" FontSize="16" Margin="15,10,0,0"></TextBlock>
+                <TextBlock Width="Auto" Height="Auto" Grid.Row="4" Grid.Column="0" Foreground="#878787" Text="付费" FontSize="16" Margin="15,10,0,10"></TextBlock>
+                <ListBox x:Name="sortListBox" SelectionChanged="sortListBox_SelectionChanged" Grid.Column="1" Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" IsTabStop="False"  Margin="0,0,0,0" ItemContainerStyle="{StaticResource FilterListBoxItemstyle}"  ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollMode="Auto">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="filterData:VideoFilter">
+                            <Grid>
+                                <Border Background="#1F2024"></Border>
+                                <TextBlock Name="text" Foreground="#E6E6E6" Text="{x:Bind filterValue}" FontSize="16"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <ListBox x:Name="areaListBox"  SelectionChanged="areaListBox_SelectionChanged" Grid.Column="1" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent"  IsTabStop="False"  Margin="0,0,0,0" ItemContainerStyle="{StaticResource FilterListBoxItemstyle}"  ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollMode="Auto">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="filterData:VideoFilter">
+                            <Grid>
+                                <Border Name="border" Background="#1F2024"></Border>
+                                <TextBlock Name="text" Foreground="#E6E6E6" Text="{x:Bind filterValue}" FontSize="16"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <ListBox x:Name="typeListBox" SelectionChanged="typeListBox_SelectionChanged" Grid.Column="1" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" IsTabStop="False"  Margin="0,0,0,0" ItemContainerStyle="{StaticResource FilterListBoxItemstyle}"  ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollMode="Auto">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="filterData:VideoFilter">
+                            <Grid>
+                                <Border Name="border" Background="#1F2024"></Border>
+                                <TextBlock Name="text" Foreground="#E6E6E6" Text="{x:Bind filterValue}" FontSize="16"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <ListBox x:Name="dateListBox" SelectionChanged="dateListBox_SelectionChanged" Grid.Column="1" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" IsTabStop="False"  Margin="0,0,0,0" ItemContainerStyle="{StaticResource FilterListBoxItemstyle}" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollMode="Auto">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="filterData:VideoFilter">
+                            <Grid>
+                                <Border Name="border" Background="#1F2024"></Border>
+                                <TextBlock Name="text" Foreground="#E6E6E6" Text="{x:Bind filterValue}" FontSize="16"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <ListBox x:Name="payListBox" SelectionChanged="payListBox_SelectionChanged" Grid.Column="1" Grid.Row="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" IsTabStop="False"  Margin="0,0,0,0" ItemContainerStyle="{StaticResource FilterListBoxItemstyle}"  ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollMode="Auto">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="filterData:VideoFilter">
+                            <Grid>
+                                <Border Name="border" Background="#1F2024"></Border>
+                                <TextBlock Name="text" Foreground="#E6E6E6" Text="{x:Bind filterValue}" FontSize="16"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+            <Grid Grid.Row="1" Background="#22252A">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <GridView ScrollViewer.VerticalScrollBarVisibility="Hidden"  Name="sitcomsGrid"
+                           Margin="15,10,0,0"
+                                ItemContainerStyle="{StaticResource GridViewItemExpanded}"
+                                Grid.Row="1"
+                                Grid.ColumnSpan="2">
+                    <GridView.ItemTemplate>
+                        <DataTemplate x:DataType="data:SitcomsOverview">
+                            <StackPanel Orientation="Vertical">
+                                <RelativePanel>
+                                    <Image Name="image" Width="{x:Bind picWidth}" Height="{x:Bind picHeight}" Stretch="UniformToFill" Source="{x:Bind picURL}"></Image>
+                                    <RelativePanel Width="80" Height="25" RelativePanel.AlignRightWith="image" RelativePanel.AlignBottomWith="image">
+                                        <RelativePanel.Background>
+                                            <SolidColorBrush Color="Black" Opacity="0.6"></SolidColorBrush>
+                                        </RelativePanel.Background>
+                                        <Image Width="15" Height="15" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="10,5,0,0" Source="/Assets/MenuIco/Bf.png"></Image>
+                                        <TextBlock Text="{x:Bind playCount}" FontSize="15" Width="Auto" Height="Auto" Foreground="White" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="0,2,0,0"></TextBlock>
+                                    </RelativePanel>
+                                    <Button Name="{x:Bind sitcomsId}" Width="{x:Bind picWidth}" Height="{x:Bind picHeight}" BorderThickness="2" Opacity="0.3" Click="SitcomsButton_Click"></Button>
+                                    <TextBlock Width="{x:Bind picWidth}" Height="Auto" TextWrapping="WrapWholeWords" RelativePanel.Below="image" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="10,12,0,10" Text="{x:Bind sitcomsName}" Foreground="#E6E6E6" FontSize="16"></TextBlock>
+                                </RelativePanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+            </Grid>
+        </Grid>
+        <Grid x:Name="videoPlayerPage" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Name="playerGrid" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <MediaElement Name="player" Stretch="Uniform" AreTransportControlsEnabled="True">
+                    <!--<MediaElement.TransportControls>
+                    <controls:MediaTransportControlsWithCustomCastButton x:Name="ME4_Controls" IsCompact="True"/>
+                </MediaElement.TransportControls>-->
+                </MediaElement>
+                <Grid Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#22252A">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid  HorizontalAlignment="Stretch" Name="sitcomsInfoGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <RelativePanel Name="detailCloseBtnPanel" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="30" >
+                            <SymbolIcon Width="30" Height="30" Symbol="Cancel" Foreground="White" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel ="True" Margin="0,0,10,0" >
+                                <SymbolIcon.RenderTransform>
+                                    <ScaleTransform ScaleX="1.0" ScaleY="1.0"></ScaleTransform>
+                                </SymbolIcon.RenderTransform>
+                            </SymbolIcon>
+                            <Button Name="closeDetail" Click="closeDetail_Click" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True"  BorderThickness="0" Height="30" Width="30" Opacity="0" Margin="0,0,10,0">
+                            </Button>
+                        </RelativePanel>
+                        <RelativePanel Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <TextBlock Name="sitComsName"  Foreground="#E2E2E2" FontSize="16" Margin="10,10,0,0" RelativePanel.AlignLeftWithPanel="True"></TextBlock>
+                            <Image Name="stars" Width="93" Height="18" RelativePanel.RightOf="sitComsName" RelativePanel.AlignVerticalCenterWith="sitComsName" Margin="10,10,0,0" Source="/Assets/stars.png" Stretch="Uniform"></Image>
+                            <TextBlock Name="score" RelativePanel.RightOf="stars" RelativePanel.AlignVerticalCenterWith="stars"  Foreground="#F6A43C" TextTrimming="WordEllipsis" Margin="10,10,0,0"></TextBlock>
+                            <TextBlock Name="commentsNumber"  RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True"  FontSize="16" Margin="0,10,10,0" Foreground="#DD6668"></TextBlock>
+                            <TextBlock Name="commentText" Text="评论" Foreground="#8F8F8F" FontSize="15" RelativePanel.LeftOf="commentsNumber" RelativePanel.AlignVerticalCenterWith="commentsNumber" Margin="0,11,10,0"></TextBlock>
+                            <TextBlock Name="playCounts" FontSize="16" Foreground="#DD6668" RelativePanel.LeftOf="commentText" RelativePanel.AlignVerticalCenterWith="commentText" Margin="0,10,15,0"></TextBlock>
+                            <TextBlock Name="platCountsText" Text="总播放" FontSize="15" Foreground="#8F8F8F" RelativePanel.LeftOf="playCounts" RelativePanel.AlignVerticalCenterWith="playCounts" Margin="0,11,10,0"></TextBlock>
+                            <RelativePanel Name="introducePanel1" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Below="sitComsName">
+                                <TextBlock Name="publicDateText" Text="出品时间" Foreground="#8F8F8F" FontSize="16" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="10,10,0,10"></TextBlock>
+                                <TextBlock Name="publicDate" Foreground="#E2E2E2" FontSize="16" RelativePanel.RightOf="publicDateText" RelativePanel.AlignVerticalCenterWith="publicDateText" Margin="10,0,0,0"></TextBlock>
+                                <TextBlock Name="areaText" Text="地区" Foreground="#8F8F8F" FontSize="16" RelativePanel.RightOf="publicDate" RelativePanel.AlignVerticalCenterWith="publicDateText" Margin="10,0,0,0"></TextBlock>
+                                <TextBlock Name="area"  Foreground="#E2E2E2" FontSize="16" RelativePanel.RightOf="areaText" RelativePanel.AlignVerticalCenterWith="publicDateText" Margin="10,0,0,0"></TextBlock>
+                                <TextBlock Name="typeText" Text="类型" Foreground="#8F8F8F" FontSize="16" RelativePanel.RightOf="area" RelativePanel.AlignVerticalCenterWith="publicDateText" Margin="10,0,0,0"></TextBlock>
+                                <TextBlock Name="type" Foreground="#E2E2E2" FontSize="16" RelativePanel.RightOf="typeText" RelativePanel.AlignVerticalCenterWith="publicDateText" Margin="10,0,0,0"></TextBlock>
+                            </RelativePanel>
+                            <RelativePanel Name="introducePanel2">
+                                <TextBlock Name="platersText" Text="主演" Foreground="#8F8F8F" FontSize="16" RelativePanel.LeftOf="players" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="10,0,10,0"></TextBlock>
+                                <TextBlock Name="players" TextTrimming="CharacterEllipsis" Foreground="#E2E2E2" FontSize="16" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="0,0,10,10"></TextBlock>
+                            </RelativePanel>
+                        </RelativePanel>
+                    </Grid>
+                    <RelativePanel Name="detaiHidingPanel" HorizontalAlignment="Stretch" Height="50" Visibility="Collapsed">
+                        <TextBlock Name="sitComsNameOfHidePanel" Foreground="#E2E2E2" FontSize="16" Margin="13,0,0,0" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"></TextBlock>
+                        <Button Click="detailBtn_Click" Name="detailBtn" BorderThickness="0" Width="60" Height="40" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True">
+                            <Button.Content>
+                                <TextBlock Text="详情" Foreground="#E2E2E2" FontSize="16" Width="Auto" Height="Auto"></TextBlock>
+                            </Button.Content>
+                            <Button.Background>
+                                <SolidColorBrush Color="White" Opacity="0"></SolidColorBrush>
+                            </Button.Background>
+                        </Button>
+                    </RelativePanel>
+                    <RelativePanel Name="introducePanel" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="概况" Foreground="#8F8F8F" Width="Auto" Height="Auto" Margin="10,0,0,0"></TextBlock>
+                            <ScrollViewer VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="1" VerticalScrollBarVisibility="Hidden" VerticalScrollMode="Enabled" Margin="10,0,0,0">
+                                <TextBlock Name="sitcomsDetaiText" HorizontalAlignment="Stretch" Height="Auto" Foreground="#E2E2E2" TextWrapping="Wrap"></TextBlock>
+                            </ScrollViewer>
+                        </Grid>
+                    </RelativePanel>
+                    <ScrollViewer Name="detailGrid1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#17181C">
+                        <Grid HorizontalAlignment ="Stretch" VerticalAlignment="Stretch" Background="Transparent">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="200"></RowDefinition>
+                                <RowDefinition Height="40"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Pivot Name="sitcomPivot1" Background="Transparent" Grid.Column="0" Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" HeaderTemplate="{StaticResource PivotHeader}" ItemContainerStyle="{StaticResource PivotItemStyle}">
+                                <PivotItem Header="选集">
+                                    <Grid Background="Transparent" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,0,0,0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <GridView Name="xuanji"
+                                        SelectionChanged="xuanji_SelectionChanged"
+                                        ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                        ItemContainerStyle="{StaticResource SitcomsGridViewItemExpanded}"
+                                        Grid.Row="1"
+                                                 
+                                        Grid.ColumnSpan="2">
+                                            <GridView.ItemTemplate>
+                                                <DataTemplate  x:DataType="data:SitcomsList">
+                                                    <StackPanel Orientation="Vertical">
+                                                        <Grid >
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="Auto"></RowDefinition>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Border Width="40" Height="40"></Border>
+                                                            <TextBlock TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{x:Bind id}" Foreground="White"></TextBlock>
+                                                        </Grid>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </GridView.ItemTemplate>
+                                        </GridView>
+                                    </Grid>
+                                </PivotItem>
+                                <PivotItem HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Header="评论" >
+                                    <ListBox Name="userComments" Background="#17181C" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollMode="Disabled" ScrollViewer.VerticalScrollMode="Auto">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate x:DataType="data:Comments">
+                                                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="60"></ColumnDefinition>
+                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"></RowDefinition>
+                                                    </Grid.RowDefinitions>
+                                                    <Ellipse Width="50" Height="50" Fill="{x:Bind userPcic}" VerticalAlignment="Top" HorizontalAlignment="Left"></Ellipse>
+                                                    <RelativePanel Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                                        <TextBlock Name="comment" Foreground="#E2E2E2" HorizontalAlignment="Stretch" Text="{x:Bind comment}" Height="Auto" TextWrapping="Wrap"></TextBlock>
+                                                        <TextBlock Name="namePre" Foreground="#8F8F8F" RelativePanel.Below="comment" Text="{x:Bind userName}" Width="Auto" Height="Auto" Margin="0,10,0,0"></TextBlock>
+                                                        <TextBlock Text="{x:Bind date}" Foreground="#8F8F8F" RelativePanel.RightOf="namePre" RelativePanel.Below="comment" Margin="20,10,0,0"></TextBlock>
+                                                    </RelativePanel>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </PivotItem>
+                            </Pivot>
+                            <RelativePanel Grid.Row="1" Background="#17181C" Grid.Column="0" HorizontalAlignment="Stretch" Height="40">
+                                <Image Height="14" Stretch="Uniform" RelativePanel.AlignVerticalCenterWith="downLoadText" RelativePanel.LeftOf="downLoadText" Margin="0,10,10,0" Source="/Assets/MenuIco/xiazai.png"></Image>
+                                <TextBlock Name="downLoadText" Text="全集下载" Foreground="#3FACC1" FontSize="14" Height="18" Width="Auto" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="0,10,20,0"></TextBlock>
+                            </RelativePanel>
+                            <Pivot Grid.Row="2" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#17181C" HeaderTemplate="{StaticResource PivotHeader}">
+                                <PivotItem Header="相关推荐">
+                                    <ListBox Name="suggestVideo" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate x:DataType="data:SuggestVideo">
+                                                <Grid HorizontalAlignment="Stretch" Background="Transparent">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"></RowDefinition>
+                                                    </Grid.RowDefinitions>
+                                                    <Image Name="videoImage" Width="140" Stretch="Uniform" Source="{x:Bind picURL}" VerticalAlignment="Top" HorizontalAlignment="Left"></Image>
+                                                    <Button Name="{x:Bind videoId}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="0" Opacity="0" Click="playVideo_Click"></Button>
+                                                    <RelativePanel Grid.Column="1" Name="videoInfoPanel" HorizontalAlignment="Stretch">
+                                                        <TextBlock Name="videoName" FontSize="15" Text="{x:Bind videoName}"  TextWrapping="Wrap" Foreground="#E2E2E2" Margin="0,10,0,0"></TextBlock>
+                                                        <TextBlock RelativePanel.AlignLeftWithPanel="True" FontSize="15" Text="{x:Bind playTimes}" Foreground="#E2E2E2" RelativePanel.Below="videoName" RelativePanel.AlignBottomWithPanel="True" Margin="0,10,0,10"></TextBlock>
+                                                    </RelativePanel>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </PivotItem>
+                            </Pivot>
+                        </Grid>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+            <Grid Name="detailGrid" Grid.Column="1" VerticalAlignment="Stretch" Background="#17181C">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="300"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Pivot Name="sitcomPivot" Background="Transparent" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  HeaderTemplate="{StaticResource PivotHeader}" ItemContainerStyle="{StaticResource PivotItemStyle}">
+                    <PivotItem Header="选集" >
+                        <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="10,0,0,0" Width="{Binding Path=ActualWidth,ElementName=sitcomPivot}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <GridView Name="xuanji1"
+                            SelectionChanged="xuanji1_SelectionChanged"
+                            ItemContainerStyle="{StaticResource SitcomsGridViewItemExpanded}"
+                            Grid.Row="1"
+                            Grid.ColumnSpan="2">
+                                <GridView.ItemTemplate>
+                                    <DataTemplate  x:DataType="data:SitcomsList">
+                                        <StackPanel Orientation="Vertical">
+                                            <Grid >
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Border Width="40" Height="40"></Border>
+                                                <TextBlock TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{x:Bind id}" Foreground="White"></TextBlock>
+                                            </Grid>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridView.ItemTemplate>
+                            </GridView>
+                        </Grid>
+                    </PivotItem>
+                    <PivotItem Header="评论" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <!--<PivotItem.Header>
+                        <Grid>
+                            <TextBlock x:Name="Header" FontSize="18" Text="评论" Foreground="White" />
+                        </Grid>
+                    </PivotItem.Header>-->
+                        <ListBox Background="#17181C" Name="userComments1" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollMode="Disabled" ScrollViewer.VerticalScrollMode="Auto">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate x:DataType="data:Comments">
+                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="60"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Ellipse Width="50" Height="50" Fill="{x:Bind userPcic}" VerticalAlignment="Top" HorizontalAlignment="Left"></Ellipse>
+                                        <RelativePanel Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                            <TextBlock Name="comment" Foreground="#E2E2E2" HorizontalAlignment="Stretch" Text="{x:Bind comment}" Height="Auto" TextWrapping="Wrap"></TextBlock>
+                                            <TextBlock Name="namePre" Foreground="#8F8F8F" RelativePanel.Below="comment" Text="{x:Bind userName}" Width="Auto" Height="Auto" Margin="0,10,0,0"></TextBlock>
+                                            <TextBlock Text="{x:Bind date}" Foreground="#8F8F8F" RelativePanel.RightOf="namePre" RelativePanel.Below="comment" Margin="15,10,0,0"></TextBlock>
+                                        </RelativePanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </PivotItem>
+                </Pivot>
+                <RelativePanel Background="#17181C" Grid.Row="1" Grid.Column="0" Width="270" Height="40">
+                    <Image Height="14" Stretch="Uniform" RelativePanel.AlignVerticalCenterWith="downLoadText1" RelativePanel.LeftOf="downLoadText1" Margin="0,12,10,0" Source="/Assets/MenuIco/xiazai.png"></Image>
+                    <TextBlock Name="downLoadText1" Text="全集下载" Foreground="#3FACC1" FontSize="14" Height="16" Width="Auto" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="0,10,20,0"></TextBlock>
+                </RelativePanel>
+                <Pivot Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#17181C" HeaderTemplate="{StaticResource PivotHeader}">
+                    <PivotItem Header="相关推荐">
+                        <ListBox Name="suggestVideo1" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate x:DataType="data:SuggestVideo">
+                                    <Grid HorizontalAlignment="Stretch" Background="Transparent">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="150"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Image Name="videoImage" Width="140" Stretch="Uniform" Source="{x:Bind picURL}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="-8,0,0,0"></Image>
+                                        <Button Name="{x:Bind videoId}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="0" Opacity="0" Click="playVideo_Click"></Button>
+                                        <RelativePanel Grid.Column="1" Name="videoInfoPanel" HorizontalAlignment="Stretch">
+                                            <TextBlock Name="videoName" FontSize="15" Text="{x:Bind videoName}"  TextWrapping="Wrap" Foreground="#E2E2E2" Margin="0,10,0,0"></TextBlock>
+                                            <TextBlock RelativePanel.AlignLeftWithPanel="True" FontSize="15" Text="{x:Bind playTimes}" Foreground="#E2E2E2" RelativePanel.Below="videoName" RelativePanel.AlignBottomWithPanel="True" Margin="0,10,0,10"></TextBlock>
+                                        </RelativePanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </PivotItem>
+                </Pivot>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

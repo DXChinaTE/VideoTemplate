@@ -1,0 +1,293 @@
+﻿<Page
+    x:Class="VideoTemplate.Views.home"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VideoTemplate.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data ="using:VideoTemplate.Common.Data"
+    mc:Ignorable="d" SizeChanged="Page_SizeChanged">
+
+    <!--<Page.Resources>
+        <CollectionViewSource x:Name="FilmsCVS"  IsSourceGrouped="False" />
+        <DataTemplate x:Name="FilmsGridViewTemplate" x:DataType="data:FilmData">
+            <StackPanel Orientation="Vertical">
+                <RelativePanel>
+                    <Image Name="image" Width="180" Height="102" Stretch="UniformToFill" Source="{x:Bind picUri}"></Image>
+                    <RelativePanel Width="80" Height="25" RelativePanel.AlignRightWith="image" RelativePanel.AlignBottomWith="image">
+                        <RelativePanel.Background>
+                            <SolidColorBrush Color="Black" Opacity="0.6"></SolidColorBrush>
+                        </RelativePanel.Background>
+                        <Image Width="15" Height="15" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="10,5,0,0" Source="/Assets/MenuIco/Bf.png"></Image>
+                        <TextBlock Text="{x:Bind amount}" FontSize="15" Width="Auto" Height="Auto" Foreground="White" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="0,2,10,0"></TextBlock>
+                    </RelativePanel>
+                    <Button Name="{x:Bind filmURL}" Width="{Binding Path=ActualWidth,ElementName=image}" Height="{Binding Path=ActualHeight,ElementName=image}" BorderThickness="2" Opacity="0.3" Click="Button_Click"></Button>
+                    <TextBlock Width="180" Height="Auto" TextWrapping="WrapWholeWords" RelativePanel.Below="image" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="10,12,10,10" Text="视频名称" Foreground="#E6E6E6" FontSize="16"></TextBlock>
+                </RelativePanel>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>-->
+    <Grid Background="#222529" Width="Auto" Height="Auto">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="col0.Width" Value="1"></Setter>
+                        <Setter Target="col1.Width" Value="*"></Setter>
+                        <Setter Target="col2.Width" Value="1"></Setter>
+                        <Setter Target="flipViewPanel1.Visibility" Value="Collapsed"></Setter>
+                        <Setter Target="flipViewPanel3.Visibility" Value="Collapsed"></Setter>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="640"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="col0.Width" Value="15*"></Setter>
+                        <Setter Target="col1.Width" Value="70*"></Setter>
+                        <Setter Target="col2.Width" Value="15*"></Setter>
+                        <Setter Target="flipViewPanel1.Visibility" Value="Visible"></Setter>
+                        <Setter Target="flipViewPanel3.Visibility" Value="Visible"></Setter>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="900"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="col0.Width" Value="25*"></Setter>
+                        <Setter Target="col1.Width" Value="50*"></Setter>
+                        <Setter Target="col2.Width" Value="25*"></Setter>
+                        <Setter Target="flipViewPanel1.Visibility" Value="Visible"></Setter>
+                        <Setter Target="flipViewPanel3.Visibility" Value="Visible"></Setter>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState></VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <RelativePanel Name="flipPanel" HorizontalAlignment="Stretch" PointerEntered="RelativePanel_PointerEntered" PointerExited="RelativePanel_PointerExited">
+            <Grid Name="flipGrid" HorizontalAlignment="Stretch" Height="Auto">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition x:Name="col0"></ColumnDefinition>
+                    <ColumnDefinition x:Name="col1"></ColumnDefinition>
+                    <ColumnDefinition x:Name="col2"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <RelativePanel Grid.Column="0" Name="flipViewPanel1">
+                    <FlipView Style="{StaticResource flipViewStyle}" x:Name="flipView1" BorderBrush="Black" BorderThickness="0">
+                        <FlipView.ItemTemplate>
+                            <DataTemplate x:DataType="data:SampleDataItem">
+                                <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                    <Image VerticalAlignment="Stretch" Stretch="UniformToFill" HorizontalAlignment="Stretch" Source="{Binding Image}"/>
+                                    <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                        <RelativePanel.Background>
+                                            <SolidColorBrush Color="Black" Opacity="0.6"></SolidColorBrush>
+                                        </RelativePanel.Background>
+                                    </RelativePanel>
+                                </Grid>
+                            </DataTemplate>
+                        </FlipView.ItemTemplate>
+                        <FlipView.ItemsPanel>
+                            <ItemsPanelTemplate >
+                                <VirtualizingStackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </FlipView.ItemsPanel>
+                    </FlipView>
+                </RelativePanel>
+                <RelativePanel Name="flipViewPanel3"  Grid.Column="2">
+                    <FlipView Style="{StaticResource flipViewStyle}" x:Name="flipView3"  BorderBrush="Black" BorderThickness="0">
+                        <FlipView.ItemTemplate>
+                            <DataTemplate x:DataType="data:SampleDataItem">
+                                <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                    <Image VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Source="{Binding Image}" Stretch="UniformToFill"/>                              
+                                    <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                        <RelativePanel.Background>
+                                            <SolidColorBrush Color="Black" Opacity="0.6"></SolidColorBrush>
+                                        </RelativePanel.Background>
+                                    </RelativePanel>
+                                </Grid>
+                            </DataTemplate>
+                        </FlipView.ItemTemplate>
+                        <FlipView.ItemsPanel>
+                            <ItemsPanelTemplate >
+                                <VirtualizingStackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </FlipView.ItemsPanel>
+                    </FlipView>
+                </RelativePanel>
+                <RelativePanel Name="flipViewPanel2" HorizontalAlignment="Stretch"  Grid.Column="1">
+                    <FlipView Style="{StaticResource flipViewStyle}" x:Name="flipView2" HorizontalAlignment="Stretch" BorderBrush="Black" BorderThickness="1">
+                        <FlipView.ItemTemplate>
+                            <DataTemplate x:DataType="data:SampleDataItem">
+                                <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                    <Image VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Source="{Binding Image}" Stretch="UniformToFill"/>                                
+                                </Grid>
+                            </DataTemplate>
+                        </FlipView.ItemTemplate>
+                        <FlipView.ItemsPanel>
+                            <ItemsPanelTemplate >
+                                <VirtualizingStackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </FlipView.ItemsPanel>
+                    </FlipView>
+                </RelativePanel>
+            </Grid>
+            <ListBox x:Name="ContextControl" RelativePanel.Below="flipGrid" RelativePanel.AlignHorizontalCenterWithPanel="True" Width="{Binding Path=ActualWidth,ElementName=flipView2}" BorderThickness="0" Height="10" Background="#222529" ItemContainerStyle="{StaticResource ContextControlItemStyle}" IsTabStop="False"  Margin="0,0,0,0" Style="{StaticResource ListBoxStyle1}">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+            <RelativePanel Name="leftFlipPanel"  Width="30" Visibility="Collapsed">
+                <RelativePanel.Background>
+                    <SolidColorBrush Color="White" Opacity="0.6"></SolidColorBrush>
+                </RelativePanel.Background>
+                <Button Name="leftFlip" Click="leftFlip_Click" Width="30" Height="270" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                    <Button.Content>
+                        <TextBlock Width="Auto" Height="Auto" Text="&lt;" FontSize="20" Foreground="Black"></TextBlock>
+                    </Button.Content>
+                </Button>
+            </RelativePanel>
+            <RelativePanel Name="rightFlipPanel"  Width="30" Visibility="Collapsed" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+                <RelativePanel.Background>
+                    <SolidColorBrush Color="White" Opacity="0.6"></SolidColorBrush>
+                </RelativePanel.Background>
+                <Button Name="rightFlip" Click="rightFlip_Click" Width="30" Height="270" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                    <Button.Content>
+                        <TextBlock Text="&gt;" Width="Auto" Height="Auto" FontSize="20" Foreground="Black"></TextBlock>
+                    </Button.Content>
+                </Button>
+            </RelativePanel>
+        </RelativePanel>
+        <ScrollViewer Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Grid Name="detailGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <Rectangle Name="icoRect" Width="5" Height="20" Fill="#00B4FF" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="15,10,0,0"></Rectangle>
+                        <TextBlock Width="Auto" Height="Auto" FontSize="20" RelativePanel.RightOf="icoRect" RelativePanel.AlignTopWithPanel="True" Margin="12,6,0,0" Text="热播电影" Foreground="#00B4FF"></TextBlock>
+                        <Button Name="moreFilmBtn" Background="Transparent" Click="moreFilmBtn_Click" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="0,0,20,0">
+                            <Button.Content>
+                                <TextBlock Text="更多" FontSize="20" Width="Auto" Height="Auto" Foreground="#878787"></TextBlock>
+                            </Button.Content>
+                        </Button>
+                    </RelativePanel>
+                    <RelativePanel Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <Grid Margin="15,15,0,15" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <GridView ScrollViewer.VerticalScrollBarVisibility="Hidden"  Name="filmsGrid" BorderThickness="0"                               
+                                ItemContainerStyle="{StaticResource GridViewItemExpanded}"
+                                Grid.Row="1"
+                                Grid.ColumnSpan="2">
+                                <GridView.ItemTemplate>
+                                    <DataTemplate x:DataType="data:FilmOverView">
+                                        <StackPanel Orientation="Vertical">
+                                            <RelativePanel>
+                                                <Image Name="image" Width="{x:Bind picWidth}" Height="{x:Bind picHeight}" Stretch="UniformToFill" Source="{x:Bind picURL}"></Image>
+                                                <RelativePanel Width="80" Height="25" RelativePanel.AlignRightWith="image" RelativePanel.AlignBottomWith="image">
+                                                    <RelativePanel.Background>
+                                                        <SolidColorBrush Color="Black" Opacity="0.6"></SolidColorBrush>
+                                                    </RelativePanel.Background>
+                                                    <Image Width="15" Height="15" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="10,5,0,0" Source="/Assets/MenuIco/Bf.png"></Image>
+                                                    <TextBlock Text="{x:Bind playCount}" FontSize="15" Width="Auto" Height="Auto" Foreground="White" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="0,2,0,0"></TextBlock>
+                                                </RelativePanel>
+                                                <Button Name="{x:Bind filmId}" Width="{x:Bind picWidth}" Height="{x:Bind picHeight}" BorderThickness="2" Opacity="0.3" Click="FilmsButton_Click"></Button>
+                                                <TextBlock Width="{x:Bind picWidth}" Height="Auto" TextWrapping="WrapWholeWords" RelativePanel.Below="image" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="10,12,0,10" Text="{x:Bind filmName}" Foreground="#E6E6E6" FontSize="16"></TextBlock>
+                                            </RelativePanel>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridView.ItemTemplate>
+                            </GridView>
+                        </Grid>
+                    </RelativePanel>
+                </Grid>
+                <Grid Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <Rectangle Name="icoRectSitcoms" Width="5" Height="20" Fill="#00B4FF" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="15,10,0,0"></Rectangle>
+                        <TextBlock Width="Auto" Height="Auto" FontSize="20" RelativePanel.RightOf="icoRectSitcoms" RelativePanel.AlignTopWithPanel="True" Margin="12,6,0,0" Text="热播连续剧" Foreground="#00B4FF"></TextBlock>
+                        <Button Name="moreSitcomsBtn" Background="Transparent" Click="moreSitcomsBtn_Click" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="0,0,20,0">
+                            <Button.Content>
+                                <TextBlock Text="更多" FontSize="20" Width="Auto" Height="Auto" Foreground="#878787"></TextBlock>
+                            </Button.Content>
+                        </Button>
+                    </RelativePanel>
+                    <RelativePanel Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <Grid Margin="15,15,0,15" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <GridView ScrollViewer.VerticalScrollBarVisibility="Hidden"  Name="sitcomsGrid"
+                                ItemContainerStyle="{StaticResource GridViewItemExpanded}"
+                                Grid.Row="1"
+                                Grid.ColumnSpan="2">
+                                <GridView.ItemTemplate>
+                                    <DataTemplate x:DataType="data:SitcomsOverview">
+                                        <StackPanel Orientation="Vertical">
+                                            <RelativePanel>
+                                                <Image Name="image" Width="{x:Bind picWidth}" Height="{x:Bind picHeight}" Stretch="UniformToFill" Source="{x:Bind picURL}"></Image>
+                                                <RelativePanel Width="80" Height="25" RelativePanel.AlignRightWith="image" RelativePanel.AlignBottomWith="image">
+                                                    <RelativePanel.Background>
+                                                        <SolidColorBrush Color="Black" Opacity="0.6"></SolidColorBrush>
+                                                    </RelativePanel.Background>
+                                                    <Image Width="15" Height="15" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="10,5,0,0" Source="/Assets/MenuIco/Bf.png"></Image>
+                                                    <TextBlock Text="{x:Bind playCount}" FontSize="15" Width="Auto" Height="Auto" Foreground="White" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="0,2,0,0"></TextBlock>
+                                                </RelativePanel>
+                                                <Button Name="{x:Bind sitcomsId}" Width="{x:Bind picWidth}" Height="{x:Bind picHeight}" BorderThickness="2" Opacity="0.3" Click="SitcomsButton_Click"></Button>
+                                                <TextBlock Width="{x:Bind picWidth}" Height="Auto" TextWrapping="WrapWholeWords" RelativePanel.Below="image" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="10,12,0,10" Text="{x:Bind sitcomsName}" Foreground="#E6E6E6" FontSize="16"></TextBlock>
+                                            </RelativePanel>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridView.ItemTemplate>
+                            </GridView>
+                        </Grid>
+                    </RelativePanel>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

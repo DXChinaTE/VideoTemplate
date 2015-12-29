@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
+  <Identity Name="25e85910-5efb-4f41-ae0b-4c150d988684" Publisher="CN=tyh" Version="1.0.3.0" />
+  <mp:PhoneIdentity PhoneProductId="25e85910-5efb-4f41-ae0b-4c150d988684" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Properties>
+    <DisplayName>VideoTemplate</DisplayName>
+    <PublisherDisplayName>tyh</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
+  </Dependencies>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="VideoTemplate.App">
+      <uap:VisualElements DisplayName="在线视频" Square150x150Logo="Assets\Magnet\icon-03.png" Square44x44Logo="Assets\Magnet\icon-01.png" Description="在线视频" BackgroundColor="#16181B">
+        <uap:DefaultTile Wide310x150Logo="Assets\Magnet\icon-06.png" Square71x71Logo="Assets\Magnet\icon-02.png" Square310x310Logo="Assets\Magnet\icon-04.png">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo" />
+            <uap:ShowOn Tile="wide310x150Logo" />
+            <uap:ShowOn Tile="square310x310Logo" />
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile>
+        <uap:SplashScreen Image="Assets\Magnet\icon-05.png" />
+      </uap:VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>

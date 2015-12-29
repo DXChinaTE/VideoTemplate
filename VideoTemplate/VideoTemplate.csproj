@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{A2C30189-637B-4984-8ABB-C03CB12D2146}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VideoTemplate</RootNamespace>
+    <AssemblyName>VideoTemplate</AssemblyName>
+    <DefaultLanguage>zh-CN</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>VideoTemplate_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundlePlatforms>x64</AppxBundlePlatforms>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Data\FilmData.cs" />
+    <Compile Include="Common\Data\SampleDataSource.cs" />
+    <Compile Include="Common\Data\SitcomsHelper.cs" />
+    <Compile Include="Common\MediaTransportControlsWithCustomCastButton.cs" />
+    <Compile Include="Common\MenuInfo.cs" />
+    <Compile Include="Common\ProjectedMediaTransportControls.cs" />
+    <Compile Include="Common\VideoDataProvider.cs" />
+    <Compile Include="Common\VideoFilter.cs" />
+    <Compile Include="Common\VideoMetaData.cs" />
+    <Compile Include="Views\Entertainment.xaml.cs">
+      <DependentUpon>Entertainment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\home.xaml.cs">
+      <DependentUpon>home.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Live.xaml.cs">
+      <DependentUpon>Live.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Movie.xaml.cs">
+      <DependentUpon>Movie.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Music.xaml.cs">
+      <DependentUpon>Music.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyInfo.xaml.cs">
+      <DependentUpon>MyInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sitcoms.xaml.cs">
+      <DependentUpon>Sitcoms.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sports.xaml.cs">
+      <DependentUpon>Sports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Variety.xaml.cs">
+      <DependentUpon>Variety.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <None Include="VideoTemplate_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\FilmImages\film1.jpg" />
+    <Content Include="Assets\FilmImages\film10.jpg" />
+    <Content Include="Assets\FilmImages\film2.jpg" />
+    <Content Include="Assets\FilmImages\film3.jpg" />
+    <Content Include="Assets\FilmImages\film4.jpg" />
+    <Content Include="Assets\FilmImages\film5.jpg" />
+    <Content Include="Assets\FilmImages\film6.jpg" />
+    <Content Include="Assets\FilmImages\film7.jpg" />
+    <Content Include="Assets\FilmImages\film8.jpg" />
+    <Content Include="Assets\FilmImages\film9.jpg" />
+    <Content Include="Assets\FilmImages\movie.png" />
+    <Content Include="Assets\FilmImages\sitcom.png" />
+    <Content Include="Assets\level.png" />
+    <Content Include="Assets\Magnet\icon-01.scale-100.png" />
+    <Content Include="Assets\Magnet\icon-02.scale-100.png" />
+    <Content Include="Assets\Magnet\icon-03.scale-100.png" />
+    <Content Include="Assets\Magnet\icon-04.scale-100.png" />
+    <Content Include="Assets\Magnet\icon-05.scale-100.png" />
+    <Content Include="Assets\Magnet\icon-06.scale-100.png" />
+    <Content Include="Assets\MenuIco\Bf.png" />
+    <Content Include="Assets\MenuIco\design-07_01.png" />
+    <Content Include="Assets\MenuIco\design-07_02.png" />
+    <Content Include="Assets\MenuIco\design-07_03.png" />
+    <Content Include="Assets\MenuIco\design-07_04.png" />
+    <Content Include="Assets\MenuIco\design07 01.png" />
+    <Content Include="Assets\MenuIco\design07 02.png" />
+    <Content Include="Assets\MenuIco\design07 03.png" />
+    <Content Include="Assets\MenuIco\design07 04.png" />
+    <Content Include="Assets\MenuIco\H1.1.png" />
+    <Content Include="Assets\MenuIco\H1.2.png" />
+    <Content Include="Assets\MenuIco\H1.3.png" />
+    <Content Include="Assets\MenuIco\H1.4.png" />
+    <Content Include="Assets\MenuIco\H1.5.png" />
+    <Content Include="Assets\MenuIco\H1.6.png" />
+    <Content Include="Assets\MenuIco\H1.7.png" />
+    <Content Include="Assets\MenuIco\H1.8.png" />
+    <Content Include="Assets\MenuIco\H1.png" />
+    <Content Include="Assets\MenuIco\H2.png" />
+    <Content Include="Assets\MenuIco\H3.png" />
+    <Content Include="Assets\MenuIco\H4.png" />
+    <Content Include="Assets\MenuIco\H5.png" />
+    <Content Include="Assets\MenuIco\H6.png" />
+    <Content Include="Assets\MenuIco\H7.png" />
+    <Content Include="Assets\MenuIco\H8.png" />
+    <Content Include="Assets\MenuIco\Logo.png" />
+    <Content Include="Assets\MenuIco\xiazai.png" />
+    <Content Include="Assets\PicData\cliff.jpg" />
+    <Content Include="Assets\PicData\grapes.jpg" />
+    <Content Include="Assets\PicData\rainier.jpg" />
+    <Content Include="Assets\PicData\sunset.jpg" />
+    <Content Include="Assets\PicData\valley.jpg" />
+    <Content Include="Assets\PicData\waterfall.jpg" />
+    <Content Include="Assets\sample.jpg" />
+    <Content Include="Assets\SitcomsImages\sitcoms1.jpg" />
+    <Content Include="Assets\SitcomsImages\sitcoms10.jpg" />
+    <Content Include="Assets\SitcomsImages\sitcoms2.jpg" />
+    <Content Include="Assets\SitcomsImages\sitcoms3.jpg" />
+    <Content Include="Assets\SitcomsImages\sitcoms4.jpg" />
+    <Content Include="Assets\SitcomsImages\sitcoms5.jpg" />
+    <Content Include="Assets\SitcomsImages\sitcoms6.jpg" />
+    <Content Include="Assets\SitcomsImages\sitcoms7.jpg" />
+    <Content Include="Assets\SitcomsImages\sitcoms8.jpg" />
+    <Content Include="Assets\SitcomsImages\sitcoms9.jpg" />
+    <Content Include="Assets\stars.png" />
+    <Content Include="Assets\TvIco\design-03_03.png" />
+    <Content Include="Assets\TvIco\design-03_06.png" />
+    <Content Include="Assets\TvIco\design-03_08.png" />
+    <Content Include="Assets\TvIco\design-03_10.png" />
+    <Content Include="Assets\TvIco\design-03_12.png" />
+    <Content Include="Assets\TvIco\design-03_14.png" />
+    <Content Include="Assets\TvIco\design-03_16.png" />
+    <Content Include="Assets\UserPic\1.jpg" />
+    <Content Include="Assets\UserPic\2.jpg" />
+    <Content Include="Assets\UserPic\3.jpg" />
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Styles\FlipViewStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Styles\GridViewItemStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Styles\MediaTransportControlWithCustomCastButtonStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ProjectedMediaTransportControlsStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Style.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Views\Entertainment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Live.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Movie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Music.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MyInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sitcoms.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Sports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Variety.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="WindowsMobile, Version=10.0.10240.0">
+      <Name>Windows Mobile Extensions for the UWP</Name>
+    </SDKReference>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

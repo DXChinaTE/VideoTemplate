@@ -1,0 +1,196 @@
+﻿<Page
+    x:Class="VideoTemplate.Views.Live"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VideoTemplate.Views"
+    xmlns:controls="using:VideoTemplate.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" SizeChanged="Page_SizeChanged">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="narrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="tvShows.(Grid.Column)" Value="0"></Setter>
+                        <Setter Target="tvShows.(Grid.Row)" Value="1"></Setter>
+                        <Setter Target="tvShows.VerticalAlignment" Value="Stretch"></Setter>
+                        <Setter Target="tvShows.HorizontalAlignment" Value="Stretch"></Setter>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="wideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="640"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="tvShows.(Grid.Column)" Value="1"></Setter>
+                        <Setter Target="tvShows.(Grid.Row)" Value="0"></Setter>
+                        <Setter Target="tvShows.Width" Value="270"></Setter>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <MediaElement Name="player" Stretch="Uniform" VerticalAlignment="Center" AreTransportControlsEnabled="True">
+                    <MediaElement.TransportControls>
+                        <controls:MediaTransportControlsWithCustomCastButton x:Name="ME4_Controls" IsCompact="True"/>
+                    </MediaElement.TransportControls>
+                </MediaElement>
+            </Grid>
+            <ListView Name="tvShows" Grid.Column="1" Grid.Row="0" RelativePanel.RightOf="player" Background="#17181C" ItemContainerStyle="{StaticResource ListViewItemExpanded}">
+                <ListViewItem>
+                    <Grid Name="tvShow" Height="70">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <Image Source="/Assets/TvIco/design-03_03.png" Style="{StaticResource tvImage}"></Image>
+                        </RelativePanel>
+                        <RelativePanel Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <TextBlock Name="tvName" Text="湖南卫视" FontSize="16" Height="20" Width="Auto" Foreground="White" TextAlignment="Left" Margin="20,10,0,0"></TextBlock>
+                            <TextBlock Name="showName" Text="新闻当事人" Style="{StaticResource textBlock1}"></TextBlock>
+                            <TextBlock Name="showTime" Text="18:00" Style="{StaticResource textBlock2}"></TextBlock>
+                        </RelativePanel>
+                    </Grid>
+                </ListViewItem>
+                <ListViewItem>
+                    <Grid Name="tvShow1" Height="70">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <Image Source="/Assets/TvIco/design-03_06.png" Style="{StaticResource tvImage}"></Image>
+                        </RelativePanel>
+                        <RelativePanel Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <TextBlock Name="tvName1" Text="浙江卫视" FontSize="16" Height="20" Width="Auto" Foreground="White" TextAlignment="Left" Margin="20,10,0,0"></TextBlock>
+                            <TextBlock Name="showName1" Text="浙江新闻联播" Style="{StaticResource textBlock1}"></TextBlock>
+                            <TextBlock Name="showTime1" Text="18:00" Style="{StaticResource textBlock2}"></TextBlock>
+                        </RelativePanel>
+                    </Grid>
+                </ListViewItem>
+                <ListViewItem> 
+                    <Grid Name="tvShow2" Height="70">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <Image Source="/Assets/TvIco/design-03_08.png" Style="{StaticResource tvImage}"></Image>
+                        </RelativePanel>
+                        <RelativePanel Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <TextBlock Name="tvName2" Text="北京卫视" FontSize="16" Height="20" Width="Auto" Foreground="White" TextAlignment="Left" Margin="20,10,0,0"></TextBlock>
+                            <TextBlock Name="showName2" Text="法制进行时" Style="{StaticResource textBlock1}"></TextBlock>
+                            <TextBlock Name="showTime2" Text="18:00" Style="{StaticResource textBlock2}"></TextBlock>
+                        </RelativePanel>
+                    </Grid>
+                </ListViewItem>
+                <ListViewItem>
+                    <Grid Name="tvShow3" Height="70">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <Image Source="/Assets/TvIco/design-03_10.png" Style="{StaticResource tvImage}"></Image>
+                        </RelativePanel>
+                        <RelativePanel Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <TextBlock Name="tvName3" Text="安徽卫视" FontSize="16" Height="20" Width="Auto" Foreground="White" TextAlignment="Left" Margin="20,10,0,0"></TextBlock>
+                            <TextBlock Name="showName3" Text="超级新闻场" Style="{StaticResource textBlock1}"></TextBlock>
+                            <TextBlock Name="showTime3" Text="18:00" Style="{StaticResource textBlock2}"></TextBlock>
+                        </RelativePanel>
+                    </Grid>
+                </ListViewItem>
+                <ListViewItem>
+                    <Grid Name="tvShow4" Height="70">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <Image Source="/Assets/TvIco/design-03_12.png" Style="{StaticResource tvImage}"></Image>
+                        </RelativePanel>
+                        <RelativePanel Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <TextBlock Name="tvName4" Text="东方卫视" FontSize="16" Height="20" Foreground="White" Width="Auto" TextAlignment="Left" Margin="20,10,0,0"></TextBlock>
+                            <TextBlock Name="showName4" Text="子午线" Style="{StaticResource textBlock1}"></TextBlock>
+                            <TextBlock Name="showTime4" Text="18:00" Style="{StaticResource textBlock2}"></TextBlock>
+                        </RelativePanel>
+                    </Grid>
+                </ListViewItem>
+                <ListViewItem>
+                    <Grid Name="tvShow5" Height="70">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <Image Source="/Assets/TvIco/design-03_14.png" Style="{StaticResource tvImage}"></Image>
+                        </RelativePanel>
+                        <RelativePanel Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <TextBlock Name="tvName5" Text="中央电视台" FontSize="16" Height="20" Foreground="White" Width="Auto" TextAlignment="Left" Margin="20,10,0,0"></TextBlock>
+                            <TextBlock Name="showName5" Text="新闻早参考" Style="{StaticResource textBlock1}"></TextBlock>
+                            <TextBlock Name="showTime5" Text="18:00" Style="{StaticResource textBlock2}"></TextBlock>
+                        </RelativePanel>
+                    </Grid>
+                </ListViewItem>
+                <ListViewItem>
+                    <Grid Name="tvShow6" Height="70">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <RelativePanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <Image Source="/Assets/TvIco/design-03_16.png" Style="{StaticResource tvImage}"></Image>
+                        </RelativePanel>
+                        <RelativePanel Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <TextBlock Name="tvName6" Text="贵州卫视" FontSize="16" Height="20" Foreground="White" Width="Auto" TextAlignment="Left" Margin="20,10,0,0"></TextBlock>
+                            <TextBlock Name="showName6" Text="贵州新闻联播" Style="{StaticResource textBlock1}"></TextBlock>
+                            <TextBlock Name="showTime6" Text="18:00" Style="{StaticResource textBlock2}"></TextBlock>
+                        </RelativePanel>
+                    </Grid>
+                </ListViewItem>
+            </ListView>
+        </Grid>
+    </Grid>
+</Page>

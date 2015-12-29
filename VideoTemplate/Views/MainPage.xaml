@@ -1,0 +1,174 @@
+﻿<Page
+    x:Class="VideoTemplate.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VideoTemplate"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Storyboard x:Name="searchBoxVisible">
+            <DoubleAnimation Duration="0:0:1" Storyboard.TargetName="search" Storyboard.TargetProperty="Width" To="150">
+                <DoubleAnimation.EasingFunction>
+                    <CubicEase EasingMode="EaseInOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </Page.Resources>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="narrowState" >
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MySplitView.DisplayMode" Value="Overlay" />
+                        <Setter Target="MySplitView.IsPaneOpen" Value="False" />
+                        <!--<Setter Target="workFrame.Margin" Value="0,0,0,0"></Setter>-->
+                        <Setter Target="pageName.Visibility" Value="Visible"></Setter>
+                        <Setter Target="Logo.(RelativePanel.AlignHorizontalCenterWithPanel)" Value="True"></Setter>
+                        <Setter Target="Logo.(RelativePanel.AlignVerticalCenterWithPanel)" Value="True"></Setter>
+                        <Setter Target="search.Width" Value="30"></Setter>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="mediaState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="640"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MySplitView.DisplayMode" Value="CompactOverlay" />
+                        <Setter Target="MySplitView.IsPaneOpen" Value="False" />
+                        <!--<Setter Target="workFrame.Margin" Value="0,-50,0,0"></Setter>-->
+                        <Setter Target="pageName.Visibility" Value="Collapsed"></Setter>
+                        <Setter Target="Logo.Margin" Value="20,0,0,0"></Setter>
+                        <Setter Target="Logo.(RelativePanel.RightOf)" Value="pageName"></Setter>
+                        <Setter Target="Logo.(RelativePanel.AlignVerticalCenterWith)" Value="pageName"></Setter>
+                        <Setter Target="search.Width" Value="200"></Setter>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="wideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="800"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MySplitView.DisplayMode" Value="Inline" />
+                        <Setter Target="MySplitView.IsPaneOpen" Value="True" />
+                        <!--<Setter Target="workFrame.Margin" Value="0,-50,0,0"></Setter>-->
+                        <Setter Target="pageName.Visibility" Value="Collapsed"></Setter>
+                        <Setter Target="Logo.Margin" Value="20,0,0,0"></Setter>
+                        <Setter Target="Logo.(RelativePanel.RightOf)" Value="pageName"></Setter>
+                        <Setter Target="Logo.(RelativePanel.AlignVerticalCenterWith)" Value="pageName"></Setter>
+                        <Setter Target="search.Width" Value="200"></Setter>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
+        <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Name="tabletBackButtonPanel"  Height="0" Background="White" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Name="backButton" Background="White" BorderThickness="0" Click="backButton_Click" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button.Content>
+                    <SymbolIcon  Symbol="Back" Name="backSymbol" Foreground="Black"></SymbolIcon>
+                </Button.Content>
+            </Button>
+            <Grid Name="myTitlebar" Background="Transparent" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="1">
+                <TextBlock Name="appName" Foreground="Black" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0"></TextBlock>
+            </Grid>
+        </Grid>
+        <RelativePanel Name="topMenuPanel" Grid.Row="1" Grid.Column="0" Background="#1e2024" Height="50">
+                <ToggleButton Name="toggleBtn" Click="toggleBtn_Click" Height="50" Width="50" Style="{StaticResource SymbolButton}" Foreground="{ThemeResource ApplicationForegroundThemeBrush}" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <ToggleButton.Content>
+                        <FontIcon x:Name="Hamburger" Foreground="White" FontFamily="Segoe MDL2 Assets" Glyph="&#xE700;" Margin="0,0,0,0"/>
+                    </ToggleButton.Content>
+                </ToggleButton>
+                <TextBlock Name="pageName" Text="首页" Foreground="White" FontSize="18" Height="22" Width="Auto" RelativePanel.AlignVerticalCenterWith="toggleBtn" RelativePanel.RightOf="toggleBtn" Margin="0,0,0,0"></TextBlock>
+                <Image Name="Logo" Source="/Assets/MenuIco/Logo.png" Width="78" Height="22"></Image>
+                <SearchBox x:Name="search" LostFocus="search_LostFocus" GotFocus="search_GotFocus" Height="30"  RelativePanel.LeftOf="userInfoBtn" Margin="0,10,10,0"></SearchBox>
+                <Button Name="userInfoBtn" Click="userInfoBtn_Click" Width="50" Height="50" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="0,0,10,0">
+                    <Button.Content>
+                        <Ellipse Name="myPicEllipse" Width="32" Height="32"></Ellipse>
+                    </Button.Content>
+                    <Button.Background>
+                        <SolidColorBrush Color="Black" Opacity="0"></SolidColorBrush>
+                    </Button.Background>
+                </Button>
+            </RelativePanel>
+            <Grid Name="workSpace" Grid.Column="0" Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <SplitView Name="MySplitView" Grid.Row="0" Grid.Column="0"  OpenPaneLength="180" DisplayMode="Inline" CompactPaneLength="70" PaneBackground="#16181B" Background="#16181B">
+                    <SplitView.Pane>
+                    <ListView Name="menuList" Width="{Binding Path=OpenPaneLength,ElementName=MySplitView}"  Height="{Binding Path=Height,ElementName=splitView}" SelectionChanged="ListView_SelectionChanged"  VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="Visible" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" ItemContainerStyle="{StaticResource ListViewItemExpanded}">
+                            <ListViewItem Name="homeItem">
+                                <RelativePanel Name="homeItemPanel">
+                                    <Image Name="homeItemImage" Width="27" Height="54" Source="/Assets/MenuIco/H1.1.png" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="8,0,0,0"></Image>
+                                    <TextBlock Width="54" Height="22" Foreground="White" FontSize="18" Text="首页" RelativePanel.AlignVerticalCenterWith="homeItemImage" RelativePanel.RightOf="homeItemImage" Margin="30,0,0,0"></TextBlock>
+                                </RelativePanel>
+                            </ListViewItem>
+                            <ListViewItem Name="liveItem">
+                                <RelativePanel Name="liveItemPanel">
+                                    <Image Name="liveItemImage" Width="27" Height="54" Source="/Assets/MenuIco/H1.2.png" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="8,0,0,0"></Image>
+                                    <TextBlock Width="54" Height="22" Foreground="White" FontSize="18" Text="直播" RelativePanel.RightOf="liveItemImage" RelativePanel.AlignVerticalCenterWith="liveItemImage" Margin="30,0,0,0"></TextBlock>
+                                </RelativePanel>
+                            </ListViewItem>
+                            <ListViewItem Name="movieItem">
+                                <RelativePanel Name="movieItemPanel">
+                                    <Image Name="movieItemImage" Width="27" Height="54" Source="/Assets/MenuIco/H1.3.png" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="8,0,0,0"></Image>
+                                    <TextBlock Width="54" Height="22" Foreground="White" FontSize="18" Text="电影" RelativePanel.RightOf="movieItemImage" RelativePanel.AlignVerticalCenterWith="movieItemImage" Margin="30,0,0,0"></TextBlock>
+                                </RelativePanel>
+                            </ListViewItem>
+                            <ListViewItem Name="sitcomsItem">
+                                <RelativePanel Name="sitcomsItemPanel">
+                                    <Image Name="sitcomsImage" Width="27" Height="54" Source="/Assets/MenuIco/H1.4.png" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="8,0,0,0"></Image>
+                                    <TextBlock Width="54" Height="22" Foreground="White" FontSize="18" Text="电视剧" RelativePanel.RightOf="sitcomsImage" RelativePanel.AlignVerticalCenterWith="sitcomsImage" Margin="30,0,0,0"></TextBlock>
+                                </RelativePanel>
+                            </ListViewItem>
+                            <ListViewItem Name="varietyItem">
+                                <RelativePanel Name="varietyItemPanel">
+                                    <Image Name="varietyItemImage" Width="27" Height="54" Source="/Assets/MenuIco/H1.5.png" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="8,0,0,0"></Image>
+                                    <TextBlock Width="54" Height="22" Foreground="White" FontSize="18" Text="综艺" RelativePanel.RightOf="varietyItemImage" RelativePanel.AlignVerticalCenterWith="varietyItemImage" Margin="30,0,0,0"></TextBlock>
+                                </RelativePanel>
+                            </ListViewItem>
+                            <ListViewItem Name="entertainmentItem">
+                                <RelativePanel Name="entertainmentItemPanel">
+                                    <Image Name="entertainmentItemImage" Width="27" Height="54" Source="/Assets/MenuIco/H1.6.png" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="8,0,0,0"></Image>
+                                    <TextBlock Width="54" Height="22" Foreground="White" FontSize="18" Text="娱乐" RelativePanel.RightOf="entertainmentItemImage" RelativePanel.AlignVerticalCenterWith="entertainmentItemImage" Margin="30,0,0,0"></TextBlock>
+                                </RelativePanel>
+                            </ListViewItem>
+                            <ListViewItem Name="sportsItem">
+                                <RelativePanel Name="sportsItemPanel">
+                                    <Image Name="sportsItemImage" Width="27" Height="54" Source="/Assets/MenuIco/H1.7.png" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="8,0,0,0"></Image>
+                                    <TextBlock Width="54" Height="22" Foreground="White" FontSize="18" Text="体育" RelativePanel.RightOf="sportsItemImage" RelativePanel.AlignVerticalCenterWith="sportsItemImage" Margin="30,0,0,0"></TextBlock>
+                                </RelativePanel>
+                            </ListViewItem>
+                            <ListViewItem Name="musicItem">
+                                <RelativePanel Name="musicItemPanel">
+                                    <Image Name="musicItemImage" Width="27" Height="54" Source="/Assets/MenuIco/H1.8.png" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="8,0,0,0"></Image>
+                                    <TextBlock Width="54" Height="22" Foreground="White" FontSize="18" Text="音乐" RelativePanel.RightOf="musicItemImage" RelativePanel.AlignVerticalCenterWith="musicItemImage" Margin="30,0,0,0"></TextBlock>
+                                </RelativePanel>
+                            </ListViewItem>
+                        </ListView>
+                        </SplitView.Pane>
+                        <Frame Name="workFrame" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        </Frame>
+                    </SplitView>
+            </Grid>
+        </Grid>
+</Page>

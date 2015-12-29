@@ -1,0 +1,154 @@
+﻿<Page
+    x:Class="VideoTemplate.Views.Movie"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VideoTemplate.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data ="using:VideoTemplate.Common"
+    xmlns:filmData ="using:VideoTemplate.Common.Data"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid Name="filterPage" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Background="#1F2024">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Width="Auto" Height="Auto" Grid.Row="0" Grid.Column="0" Foreground="#878787" Text="排序" FontSize="16" Margin="15,10,0,0"></TextBlock>
+                <TextBlock Width="Auto" Height="Auto" Grid.Row="1" Grid.Column="0" Foreground="#878787" Text="地区" FontSize="16" Margin="15,10,0,0"></TextBlock>
+                <TextBlock Width="Auto" Height="Auto" Grid.Row="2" Grid.Column="0" Foreground="#878787" Text="类型" FontSize="16" Margin="15,10,0,0"></TextBlock>
+                <TextBlock Width="Auto" Height="Auto" Grid.Row="3" Grid.Column="0" Foreground="#878787" Text="时间" FontSize="16" Margin="15,10,0,0"></TextBlock>
+                <TextBlock Width="Auto" Height="Auto" Grid.Row="4" Grid.Column="0" Foreground="#878787" Text="付费" FontSize="16" Margin="15,10,0,10"></TextBlock>
+                <ListBox x:Name="sortListBox" SelectionChanged="sortListBox_SelectionChanged" Grid.Column="1" Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" IsTabStop="False"  Margin="0,0,0,0" ItemContainerStyle="{StaticResource FilterListBoxItemstyle}"  ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollMode="Auto">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="data:VideoFilter">
+                            <Grid>
+                                <Border Background="#1F2024"></Border>
+                                <TextBlock Name="text" Foreground="#E6E6E6" Text="{x:Bind filterValue}" FontSize="16"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <ListBox x:Name="areaListBox"  SelectionChanged="areaListBox_SelectionChanged" Grid.Column="1" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent"  IsTabStop="False"  Margin="0,0,0,0" ItemContainerStyle="{StaticResource FilterListBoxItemstyle}"  ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollMode="Auto">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="data:VideoFilter">
+                            <Grid>
+                                <Border Name="border" Background="#1F2024"></Border>
+                                <TextBlock Name="text" Foreground="#E6E6E6" Text="{x:Bind filterValue}" FontSize="16"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <ListBox x:Name="typeListBox" SelectionChanged="typeListBox_SelectionChanged" Grid.Column="1" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" IsTabStop="False"  Margin="0,0,0,0" ItemContainerStyle="{StaticResource FilterListBoxItemstyle}"  ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollMode="Auto">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="data:VideoFilter">
+                            <Grid>
+                                <Border Name="border" Background="#1F2024"></Border>
+                                <TextBlock Name="text" Foreground="#E6E6E6" Text="{x:Bind filterValue}" FontSize="16"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <ListBox x:Name="dateListBox" SelectionChanged="dateListBox_SelectionChanged" Grid.Column="1" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" IsTabStop="False"  Margin="0,0,0,0" ItemContainerStyle="{StaticResource FilterListBoxItemstyle}" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollMode="Auto">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="data:VideoFilter">
+                            <Grid>
+                                <Border Name="border" Background="#1F2024"></Border>
+                                <TextBlock Name="text" Foreground="#E6E6E6" Text="{x:Bind filterValue}" FontSize="16"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <ListBox x:Name="payListBox" SelectionChanged="payListBox_SelectionChanged" Grid.Column="1" Grid.Row="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" IsTabStop="False"  Margin="0,0,0,0" ItemContainerStyle="{StaticResource FilterListBoxItemstyle}"  ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollMode="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollMode="Auto">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate x:DataType="data:VideoFilter">
+                            <Grid>
+                                <Border Name="border" Background="#1F2024"></Border>
+                                <TextBlock Name="text" Foreground="#E6E6E6" Text="{x:Bind filterValue}" FontSize="16"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+            <Grid Grid.Row="1" Background="#22252A">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <GridView ScrollViewer.VerticalScrollBarVisibility="Hidden"  Name="filmsGrid" Margin="15,10,0,0"                              
+                                ItemContainerStyle="{StaticResource GridViewItemExpanded}"
+                                Grid.Row="1"
+                                Grid.ColumnSpan="2">
+                    <GridView.ItemTemplate>
+                        <DataTemplate x:DataType="filmData:FilmOverView">
+                            <StackPanel Orientation="Vertical">
+                                <RelativePanel>
+                                    <Image Name="image" Width="{x:Bind picWidth}" Height="{x:Bind picHeight}" Stretch="UniformToFill" Source="{x:Bind picURL}"></Image>
+                                    <RelativePanel Width="80" Height="25" RelativePanel.AlignRightWith="image" RelativePanel.AlignBottomWith="image">
+                                        <RelativePanel.Background>
+                                            <SolidColorBrush Color="Black" Opacity="0.6"></SolidColorBrush>
+                                        </RelativePanel.Background>
+                                        <Image Width="15" Height="15" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" Margin="10,5,0,0" Source="/Assets/MenuIco/Bf.png"></Image>
+                                        <TextBlock Text="{x:Bind playCount}" FontSize="15" Width="Auto" Height="Auto" Foreground="White" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignRightWithPanel="True" Margin="0,2,0,0"></TextBlock>
+                                    </RelativePanel>
+                                    <Button Name="{x:Bind filmId}" Width="{x:Bind picWidth}" Height="{x:Bind picHeight}" BorderThickness="2" Opacity="0.3" Click="FilmsButton_Click"></Button>
+                                    <TextBlock Width="{x:Bind picWidth}" Height="Auto" TextWrapping="WrapWholeWords" RelativePanel.Below="image" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" Margin="10,12,0,10" Text="{x:Bind filmName}" Foreground="#E6E6E6" FontSize="16"></TextBlock>
+                                </RelativePanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+            </Grid>
+        </Grid>
+        <Grid x:Name="moviePlayPage" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Blue">
+            <MediaElement Name="player" VerticalAlignment="Top" HorizontalAlignment="Stretch" Stretch="Uniform" AreTransportControlsEnabled="True">
+                <!--<MediaElement.TransportControls>
+                    <controls:MediaTransportControlsWithCustomCastButton x:Name="ME4_Controls" IsCompact="True"/>
+                </MediaElement.TransportControls>-->
+            </MediaElement>
+        </Grid>
+    </Grid>
+</Page>
